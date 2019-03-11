@@ -5,11 +5,11 @@
 稳定
 '''
 def insert_sort(alist):
-    n = len(alist)
-    for j in range(1, n ):
-        for i in range(j):
-            if alist[i] > alist[j]:
-                alist[j], alist[i] = alist[i], alist[j]
+    for index,item in enumerate(alist):
+        while index>0 and  alist[index-1]>item:
+        	alist[index] = alist[index-1]
+        	index-=1
+        alist[index]=item
 
 
 if __name__ == '__main__':
