@@ -8,8 +8,8 @@
 
 ```
 def bubble_sort(alist):
-	for i in range(len(alist)-1,0,-1):  #外成循环的边界
-		for j in range(j):
-			if alist[j]>alist[j+1]:
-				alist[j],alist[j+1] = alist[j+1],alist[j]
+    for i in range(len(alist)-1,0,-1):  #外成循环的边界
+        for j in range(j):
+            if alist[j]>alist[j+1]:
+                alist[j],alist[j+1] = alist[j+1],alist[j]
 ```
