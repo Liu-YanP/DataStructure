@@ -1,5 +1,5 @@
 #并归排序
-def merge_sort(alist):
+def merge_sort(alist):  
     n = len(alist)
     if n<=1:
         return alist
@@ -23,7 +23,7 @@ def merge(left,right):
         else:
             result.append(right[r])
             r+=1
-    result +=left[l:]
+    result +=left[l:]  #将剩下的加在后面
     result +=right[r:]
     return result
 

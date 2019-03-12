@@ -51,4 +51,4 @@ def quick_sort(alist,start,end):
 if __name__ == '__main__':
     alist = [25,2,12,14,54,41,15,23,45,21,4]
     quick_sort(alist,0,len(alist)-1)
-    print(alist)
+    print(alist,len(alist))

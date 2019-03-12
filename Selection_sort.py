@@ -13,6 +13,6 @@ def selection_sort(alist):
 
 
 if __name__ == '__main__':
-    alist = [2,3,1]
+    alist = [2,3,1,4,6,7,854,54]
     selection_sort(alist)
     print(alist)

@@ -6,10 +6,10 @@
 '''
 def insert_sort(alist):
     for index,item in enumerate(alist):
-        while index>0 and  alist[index-1]>item:
-        	alist[index] = alist[index-1]
+        while index>0 and  alist[index-1]>item:  #item为待插入元素，从后往前移动直到寻找到，比item小的元素
+        	alist[index] = alist[index-1]      #将比item大的元素往后移
         	index-=1
-        alist[index]=item
+        alist[index]=item                  #直到找到比item小的元素，将item插入
 
 
 if __name__ == '__main__':
