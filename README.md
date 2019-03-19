@@ -131,3 +131,41 @@ def quick_sort(alist,start,end):
     quick_sort(alist,low+1,end)
 
 ```
+## 堆排序
+大顶堆:所有父节点都大于左右子节点的完全二叉树
+将一个列表转化为完全树，下标为$i$的元素的左子树的下标为$2*i+1$，右子树为$2*i+2$，父节点为i//2(//表示取整)
+
+1. 构建初始大顶堆
+2. 将堆顶元素（即最大的元素）与末尾元素进行交换，使末尾元素最大。
+3. 然后再次重建大顶堆，堆顶的元素为第二大元素
+4. 循环往复步骤2和3，寻找出第三、第四...大元素
+```
+# 堆排序算法
+def heap_sort(ls):
+    n = len(ls)
+    for i in range(n//2-1,-1,-1):  #初始化堆  i为最后一个有子树的节点
+        adjustHeap(ls,i,n-1)   #从最后一含有子树的节点开始
+
+    for i in range(n-1,-1,-1):
+        ls[0],ls[i] = ls[i],ls[0]  #堆顶和最后的叶子元素换位置
+        adjustHeap(ls,0,i-1)  #从堆顶开始调整
+    return ls
+def adjustHeap(ls,i,n):
+    temp = ls[i]  #父元素
+    j = 2*i+1  #左子节点
+    while j<=n:#左子节点存在，
+        if j<n and ls[j]<ls[j+1]:#右节点存在，并且左节点大于右节点
+            j+=1
+        if temp<ls[j]:
+            ls[i] = ls[j]
+            i = j
+            j = 2*j+1
+        else:
+            break
+    ls[i] = temp
+    return ls
+    
+if __name__ == '__main__':
+    ls = [2,45,3,54,674,35,5]
+    print(heap_sort(ls))
+```

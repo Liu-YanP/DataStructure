@@ -26,18 +26,17 @@ def quick_sort(alist,start,end):
         #如果low和high未重合，high指向的元素不比基准元素小，则high向左移
         while low < high and alist[high] >=mid:
             high -= 1
-        #将high指向的元素放到low的位置上
-        alist[low] = alist[high]
+        #将high指向的元素比基准元素小，则放到low的位置上
+        alist[low] = alist[high]  #此时low位置上是，基准元素。不怕被覆盖
 
         #如果low与high未重合，low指向的元素比基准元素小，则low向右移
         while low < high and alist[low] < mid:
             low +=1
 
         #将low指向的元素放到high的位置上
-        alist[high] = alist[low]
+        alist[high] = alist[low]  #此时higt的元素已经赋值给之前的low了，不怕被覆盖
 
     #退出循环后，此时low和high重合，指向的位置为基准元素的正确位置
-    #将基准元素放到该位置
     alist[low] = mid
 
     #对基准元素左边的子序列进行快速排序
@@ -49,6 +48,6 @@ def quick_sort(alist,start,end):
 
 #测试
 if __name__ == '__main__':
-    alist = [25,2,12,14,54,41,15,23,45,21,4]
+    alist = [2,5,7,6,3,1]
     quick_sort(alist,0,len(alist)-1)
-    print(alist,len(alist))
+    print(alist)
