@@ -1,21 +1,20 @@
+import random
 def count_sort(ls):
-	minValue = min(ls)
 	maxValue = max(ls)
-	count_ls = range(minValue,maxValue+1)
-	nn = [0 for i in range(len(count_ls))]
+	count_ls = [0 for i in range(maxValue+1)]
 	new_ls = []
-	for i in range(len(count_ls)):
-		for value in ls:
-			if count_ls[i]==value:
-				nn[i]+=1
-	for i in range(len(count_ls)):
-		for count in range(nn[i]):
-			new_ls.append(count_ls[i])
+	for value in ls:
+		count_ls[value] +=1	
 
+	for i in range(len(count_ls)):
+		for count in range(count_ls[i]):
+			new_ls.append(i)
 	return new_ls
 
 if __name__ == '__main__':
-	ls = [12,3,43,56,7865,53,3]
+	ls = list(range(20))
+	random.shuffle(ls)  #在源列表上洗牌
+	print(ls)
 	print(count_sort(ls))
 
 	

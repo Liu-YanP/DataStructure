@@ -171,24 +171,64 @@ if __name__ == '__main__':
 ```
 ## 计数排序
 局限于整数。
+1. 找到无序数组A中的最大值maxValue
+2. 开辟一个新的数组B，长度为maxValue+1
+3. 开始计数：如果无序数组A的值等与新数组B的下标，则数组B在该下标处的值加一
+4. 遍历数组B,输出结果
 ```
+import random
 def count_sort(ls):
-    minValue = min(ls)
     maxValue = max(ls)
-    count_ls = range(minValue,maxValue+1)
-    nn = [0 for i in range(len(count_ls))]
+    count_ls = [0 for i in range(maxValue+1)]
     new_ls = []
-    for i in range(len(count_ls)):
-        for value in ls:
-            if count_ls[i]==value:
-                nn[i]+=1
-    for i in range(len(count_ls)):
-        for count in range(nn[i]):
-            new_ls.append(count_ls[i])
+    for value in ls:
+        count_ls[value] +=1 
 
+    for i in range(len(count_ls)):
+        for count in range(count_ls[i]):
+            new_ls.append(i)
     return new_ls
 
 if __name__ == '__main__':
-    ls = [12,3,43,56,7865,53,3]
+    ls = list(range(20))
+    random.shuffle(ls)  #在源列表上洗牌
+    print(ls)
     print(count_sort(ls))
+```
+## 桶排序
+1. 首先计算每个桶内的数据范围
+2. 遍历所有元素，将元素放入对应的桶内
+3. 对每个桶内的元素排序
+4. 将每个桶的元素连接起来
+```
+import random
+
+def bucket_sort(ls,bucketSize):
+    minValue = min(ls)
+    maxValue = max(ls)
+    buckets = [[] for i in range(bucketSize)]  #初始化桶
+    result = []
+
+    space = (maxValue-minValue+1)/bucketSize  #计算每个桶的数据范围
+
+    for  i in ls:
+        j = int((i-minValue)//space)  #计算元素应该放入那个桶，j为桶的编号
+        buckets[j].append(i)
+    for i in range(bucketSize):
+        adjust_bucket(buckets[i])  #对桶内元素进行排序
+        result.extend(buckets[i])
+    return result
+
+def adjust_bucket(ls):  #对桶内元素进行排序
+    for index, item in enumerate(ls):
+        while index>0 and ls[index-1]>item:
+            ls[index] = ls[index-1] 
+            index = index-1
+        ls[index] = item
+
+if __name__ == '__main__':
+    ls = list(range(20))
+    random.shuffle(ls)
+    print(ls)
+    print(bucket_sort(ls,4))
 ```
