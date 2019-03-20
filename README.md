@@ -133,7 +133,7 @@ def quick_sort(alist,start,end):
 ```
 ## 堆排序
 大顶堆:所有父节点都大于左右子节点的完全二叉树
-将一个列表转化为完全树，下标为$i$的元素的左子树的下标为$2*i+1$，右子树为$2*i+2$，父节点为i//2(//表示取整)
+将一个列表转化为完全树，下标为$i$的元素的左子树的下标为 $2i+1$，右子树为$2i+2$，父节点为i//2(//表示取整)
 
 1. 构建初始大顶堆
 2. 将堆顶元素（即最大的元素）与末尾元素进行交换，使末尾元素最大。
@@ -231,4 +231,32 @@ if __name__ == '__main__':
     random.shuffle(ls)
     print(ls)
     print(bucket_sort(ls,4))
+```
+## 基数排序
+1. 计算最大元素的位数
+2. 初始化桶，范围[0,9]
+3. 从元素的最低位数开始，将其放入对应下标的桶中
+4. 然后按顺序连接桶中元素，并再次将元素按十位上的数放入对应桶的下标
+5. 循环步骤3、4,直到最高位处理完。将数据输出
+```
+# 基数排序
+import random
+def radix_sort(ls):
+    maxValue = max(ls)
+    d = len(str(maxValue))  #最大值的位数
+    for i in range(d):
+        buckets = [[] for i in range(10)]
+        for j in range(len(ls)):
+            buckets[ls[j]//(10**i)%10].append(ls[j])
+            #print(buckets)
+        ls = []
+        for bucket in buckets:
+            ls.extend(bucket)
+    return ls
+
+if __name__ == '__main__':
+    ls = list(range(25))
+    random.shuffle(ls)
+    print(ls)
+    print(radix_sort(ls))
 ```
