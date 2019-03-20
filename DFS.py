@@ -1,3 +1,5 @@
+# 图的深度优先算法
+
 graph = {
 'A':['B','C'],
 'B':['A','C','D'],
@@ -6,16 +8,16 @@ graph = {
 'E':['C','D'],
 'F':['F']
 }
-#广度优先算法
+#深度优先算法
 def DFS(graph,start_node):
     '''
     算法思路：建立一个堆栈，首先将起始点放入堆栈。若堆栈不为空，每次
     取出栈顶的点，然后将取出点的相邻节点（不重复的）放入堆栈。直达堆栈
     为空 '''
     stack = []
-    stack.append(start_node)
+    stack.append(start_node)  #将起始点放入
     seen = set()
-    seen.add(start_node)
+    seen.add(start_node)   #标记已经放入过的顶点
     parent = {#每个节点的父节点
     start_node:None,
     }
