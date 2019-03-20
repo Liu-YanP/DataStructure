@@ -1,3 +1,5 @@
+#图的广度优先算法
+
 graph = {
 'A':['B','C'],
 'B':['A','C','D'],
@@ -14,12 +16,12 @@ def BFS(graph,start_node):
     为空 '''
     queue = []
     queue.append(start_node)
-    seen = set()
+    seen = set()  #放入过队列的元素
     seen.add(start_node)
-    while len(queue)>0:
-        vertex = queue.pop(0)
-        node = graph[vertex]
-        for w in node:
+    while len(queue)>0:  #队列不为零
+        vertex = queue.pop(0) #弹出先进去的元素
+        node = graph[vertex]  
+        for w in node:    #将弹出元素的相邻节点放入队尾
             if w not in seen:
                 queue.append(w)
                 seen.add(w)
